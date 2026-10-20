@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
-const auth = require("../auth");
+const { errorHandler, createAccessToken } = require("../auth");
 
 
 // [USER REGISTRATION]
@@ -94,13 +94,13 @@ module.exports.userAuthentication = (req, res) => {
 
         return res.status(200).send({
             message: "User logged in successfully",
-            access: auth.createAccessToken(result)
+            access: createAccessToken(result)
         });
 
     })
     .catch(error => {
 
-        return auth.errorHandler(error, req, res);
+        return errorHandler(error, req, res);
     });
 };
 
@@ -124,6 +124,6 @@ module.exports.retrieveUser = (req, res) => {
     })
     .catch(error => {
 
-        return auth.errorHandler(error, req, res);
+        return errorHandler(error, req, res);
     });
 };
