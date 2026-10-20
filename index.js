@@ -57,12 +57,10 @@ app.use((req, res) => {
 
 
 // [SERVER]
-// if(require.main === module) {
+const PORT = process.env.PORT || 4000;
 
-//     app.listen(process.env.PORT || 4000, () => {
-
-//         console.log(`API is now online on port ${process.env.PORT || 4000}`);
-//     });
-// }
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`API is now online on port ${PORT}`);
+});
 
 module.exports = {app, mongoose};
